@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="DoR-5R-rWh" customClass="MovieCollectionViewCell" customModule="MovieApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="252" height="302"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ZoR-Cr-wrx">
+                <rect key="frame" x="0.0" y="0.0" width="252" height="302"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x58-zU-idK">
+                        <rect key="frame" x="0.0" y="0.0" width="252" height="302"/>
+                    </imageView>
+                    <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gTK-ZP-MBs">
+                        <rect key="frame" x="0.0" y="262" width="252" height="40"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zCK-BH-7Yr">
+                                <rect key="frame" x="15.000000000000004" y="0.0" width="41.333333333333343" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="X26-i3-mGi"/>
+                            <constraint firstAttribute="bottom" secondItem="zCK-BH-7Yr" secondAttribute="bottom" id="XSR-pr-21E"/>
+                            <constraint firstItem="zCK-BH-7Yr" firstAttribute="centerY" secondItem="gTK-ZP-MBs" secondAttribute="centerY" id="io4-nN-mzh"/>
+                            <constraint firstItem="zCK-BH-7Yr" firstAttribute="leading" secondItem="gTK-ZP-MBs" secondAttribute="leading" constant="15" id="jWp-d9-P2T"/>
+                            <constraint firstItem="zCK-BH-7Yr" firstAttribute="top" secondItem="gTK-ZP-MBs" secondAttribute="top" id="za2-p7-flu"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="x58-zU-idK" firstAttribute="top" secondItem="ZoR-Cr-wrx" secondAttribute="top" id="6dE-S3-lJ0"/>
+                    <constraint firstAttribute="trailing" secondItem="gTK-ZP-MBs" secondAttribute="trailing" id="BzM-lD-YfN"/>
+                    <constraint firstItem="gTK-ZP-MBs" firstAttribute="leading" secondItem="ZoR-Cr-wrx" secondAttribute="leading" id="Cbe-Ab-06N"/>
+                    <constraint firstAttribute="trailing" secondItem="x58-zU-idK" secondAttribute="trailing" id="FVw-8K-lVa"/>
+                    <constraint firstAttribute="bottom" secondItem="gTK-ZP-MBs" secondAttribute="bottom" id="M1l-aN-3K0"/>
+                    <constraint firstItem="x58-zU-idK" firstAttribute="leading" secondItem="ZoR-Cr-wrx" secondAttribute="leading" id="RAu-8p-RBg"/>
+                    <constraint firstAttribute="bottom" secondItem="x58-zU-idK" secondAttribute="bottom" id="tnd-pr-V9q"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="252" height="302"/>
+            <connections>
+                <outlet property="movieNameLabel" destination="zCK-BH-7Yr" id="gqY-xF-vBq"/>
+                <outlet property="posterImageView" destination="x58-zU-idK" id="ohN-0t-bp6"/>
+            </connections>
+            <point key="canvasLocation" x="-409.16030534351142" y="285.21126760563379"/>
+        </collectionViewCell>
+    </objects>
+</document>

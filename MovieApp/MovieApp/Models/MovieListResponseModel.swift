@@ -9,7 +9,7 @@ import Foundation
 
 struct MovieListResponseModel: Codable {
     let page: Int?
-    let results: [Result]?
+    let results: [MovieResult]?
     let totalResults: Int?
     let totalPages: Int?
     
@@ -21,7 +21,7 @@ struct MovieListResponseModel: Codable {
     }
 }
 
-struct Result: Codable {
+struct MovieResult: Codable {
     let adult: Bool?
     let backdropPath: String?
     let genreIds: [Int]?

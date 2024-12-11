@@ -8,5 +8,17 @@
 import Foundation
 
 final class MovieDetailViewModel: BaseViewModel {
+    private var movie: MovieDetailResponseModel?
     
+    func getMovieData() -> MovieDetailResponseModel {
+        guard let movie else { fatalError() }
+        return movie
+    }
+    
+    func getMovie(with id: Int) {
+        NetworkManager.shared.getMovie(id) { response in
+            guard let response else { return }
+            self.movie = response
+        }
+    }
 }
