@@ -57,7 +57,7 @@ extension NetworkManager {
     }
     
     func searchMovie(_ searchText: String, completion: @escaping (MovieListResponseModel?) -> Void) {
-        performRequest(urlString: baseURL + "search/movie?query=\(searchText)?api_key=\(apiKey)") { data in
+        performRequest(urlString: baseURL + "search/movie?query=\(searchText)&api_key=\(apiKey)") { data in
             guard let data = data, let parseData = self.parseJSON(data: data, type: MovieListResponseModel.self) else { return completion(nil) }
             completion(parseData)
         }

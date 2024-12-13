@@ -18,21 +18,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZGb-3I-62z">
-                                <rect key="frame" x="20" y="59" width="353" height="793"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ZGb-3I-62z">
+                                <rect key="frame" x="16" y="59" width="361" height="793"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="J1b-Cl-Vpe">
-                                        <rect key="frame" x="0.0" y="0.0" width="353" height="80"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="U0F-vF-L3V">
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="40"/>
+                                        <subviews>
+                                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="J1b-Cl-Vpe" customClass="BaseSearchBar" customModule="MovieApp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="328" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="foE-6l-asx"/>
+                                                </constraints>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </searchBar>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="window" translatesAutoresizingMaskIntoConstraints="NO" id="E8V-uu-EUP">
+                                                <rect key="frame" x="336" y="0.0" width="25" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="25" id="efU-oA-33G"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="80" id="foE-6l-asx"/>
+                                            <constraint firstItem="E8V-uu-EUP" firstAttribute="centerY" secondItem="U0F-vF-L3V" secondAttribute="centerY" id="E9x-x5-wnf"/>
                                         </constraints>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="BYZ-38-t0r" id="YbT-pa-SQW"/>
-                                        </connections>
-                                    </searchBar>
+                                    </stackView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rMm-4T-cCL">
-                                        <rect key="frame" x="0.0" y="80" width="353" height="713"/>
+                                        <rect key="frame" x="0.0" y="56" width="361" height="737"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5NU-tf-0Bf">
                                             <size key="itemSize" width="128" height="128"/>
@@ -52,26 +63,20 @@
                                         </cells>
                                     </collectionView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="J1b-Cl-Vpe" secondAttribute="trailing" id="OGv-b6-kgi"/>
-                                    <constraint firstItem="rMm-4T-cCL" firstAttribute="top" secondItem="J1b-Cl-Vpe" secondAttribute="bottom" id="XmO-P8-JtI"/>
-                                    <constraint firstItem="J1b-Cl-Vpe" firstAttribute="top" secondItem="ZGb-3I-62z" secondAttribute="top" id="hOt-jg-G7F"/>
-                                    <constraint firstItem="J1b-Cl-Vpe" firstAttribute="leading" secondItem="ZGb-3I-62z" secondAttribute="leading" id="tAA-Wy-pUR"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="ZGb-3I-62z" secondAttribute="trailing" constant="20" id="WhY-qi-W89"/>
+                            <constraint firstAttribute="trailing" secondItem="ZGb-3I-62z" secondAttribute="trailing" constant="16" id="WhY-qi-W89"/>
                             <constraint firstAttribute="bottom" secondItem="ZGb-3I-62z" secondAttribute="bottom" id="XxR-pX-Yc0"/>
                             <constraint firstItem="ZGb-3I-62z" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ipV-2K-ZdB"/>
-                            <constraint firstItem="ZGb-3I-62z" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="v5I-xR-hn3"/>
+                            <constraint firstItem="ZGb-3I-62z" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="v5I-xR-hn3"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="movieListCollectionView" destination="rMm-4T-cCL" id="4pO-fl-IeP"/>
-                        <outlet property="movieSearchBar" destination="J1b-Cl-Vpe" id="mFP-nE-CRE"/>
+                        <outlet property="movieSearchBar" destination="J1b-Cl-Vpe" id="UyU-Tf-78d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -80,6 +85,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="window" width="384" height="384"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

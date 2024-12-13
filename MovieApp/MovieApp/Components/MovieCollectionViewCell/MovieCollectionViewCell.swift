@@ -14,9 +14,6 @@ final class MovieCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-
-        movieNameLabel.text = "Movie Name"
-        posterImageView.loadImage(fromURL: "https://image.tmdb.org/t/p/w200/3V4kLQg0kSqPLctI5ziYWabAZYF.jpg")
     }
     
     func configure(data: MovieCollectionViewUIModel?) {

@@ -10,8 +10,8 @@ import Foundation
 final class MovieDetailViewModel: BaseViewModel {
     private var movie: MovieDetailResponseModel?
     
-    func getMovieData() -> MovieDetailResponseModel {
-        guard let movie else { fatalError() }
+    func getMovieData() -> MovieDetailResponseModel? {
+        guard let movie = movie else { return nil }
         return movie
     }
     
