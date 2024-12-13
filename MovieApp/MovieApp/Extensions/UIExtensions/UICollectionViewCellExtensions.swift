@@ -20,7 +20,10 @@ extension UICollectionView {
     func registerSupplementaryNib<T: UICollectionReusableView>(_: T.Type, kind: String) {
         self.register(UINib(nibName: String(describing: T.self), bundle: Bundle.main), forSupplementaryViewOfKind: kind, withReuseIdentifier: String(describing: T.self))
     }
-    
+    func registerSupplementaryNibCustom<T: UICollectionReusableView>(_ customClass: T.Type, kind: String) {
+        self.register(customClass, forSupplementaryViewOfKind: kind, withReuseIdentifier: String(describing: T.self))
+    }
+
     func guardedScrollToItem(at indexPath: IndexPath, at scrollPosition: UICollectionView.ScrollPosition, animated: Bool) {
         if numberOfSections > indexPath.section, numberOfItems(inSection: 0) > indexPath.row {
             self.scrollToItem(at: indexPath, at: scrollPosition, animated: animated)

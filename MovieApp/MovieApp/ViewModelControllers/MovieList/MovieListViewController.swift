@@ -9,8 +9,9 @@ import Foundation
 import UIKit
 
 final class MovieListViewController: BaseViewController {
-    @IBOutlet weak var movieSearchBar: BaseSearchBar!
-    @IBOutlet weak var movieListCollectionView: UICollectionView!
+    @IBOutlet private weak var movieSearchBar: BaseSearchBar!
+    @IBOutlet private weak var movieListCollectionView: UICollectionView!
+    @IBOutlet private weak var multipleSelectionImageView: UIImageView!
     
     lazy var viewModel: MovieListViewModel = {
         return MovieListViewModel()
@@ -22,6 +23,7 @@ final class MovieListViewController: BaseViewController {
     }
 
     private func setup() {
+        setMultipleSelectionViewGesture()
         configureSearchBar()
         configureCollectionView()
         setupUI()
@@ -32,6 +34,7 @@ final class MovieListViewController: BaseViewController {
         viewModel.moviesCallback = { [weak self] in
             guard let self else { return }
             DispatchQueue.main.async {
+                self.multipleSelectionImageView.image = self.viewModel.getViewSelection().icon
                 self.reloadCollectionView()
                 self.hideProgress()
             }
@@ -50,18 +53,35 @@ final class MovieListViewController: BaseViewController {
     }
     
     private func registerCollectionViewNibs() {
+        movieListCollectionView.registerSupplementaryNibCustom(CustomFooterView.self, kind: UICollectionView.elementKindSectionFooter)
         movieListCollectionView.registerNib(MovieCollectionViewCell.self)
     }
     
     private func reloadCollectionView() {
         DispatchQueue.main.async {
+            self.movieListCollectionView.collectionViewLayout.invalidateLayout()
             self.movieListCollectionView.reloadData()
         }
+    }
+    
+    private func setMultipleSelectionViewGesture() {
+        multipleSelectionImageView.isUserInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleMultipleSelectionImageViewTap))
+        multipleSelectionImageView.addGestureRecognizer(tapGestureRecognizer)
     }
     
     private func setupUI() {
         movieSearchBar.placeholder = "Search Movies"
         showNavigationItem(title: "Movie List")
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    @objc func handleMultipleSelectionImageViewTap() {
+        viewModel.changeMultipleSelectionState()
+    }
+    
+    @objc func handlePagination() {
+        viewModel.getPopularMoviesPaginating()
     }
 }
 
@@ -74,7 +94,8 @@ extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDat
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCollectionViewCell.reuseId, for: indexPath) as? MovieCollectionViewCell else { return UICollectionViewCell() }
         let movie = viewModel.getMovie(at: indexPath.row)
         let movieUIModel = MovieCollectionViewUIModel(title: movie?.title, poster: movie?.backdropPath?.toPosterUrl)
-        cell.configure(data: movieUIModel)
+        let isStarHidden = DataManager.shared.favoriteMovies?.filter({ $0 == movie?.id }).count ?? 0 > 0
+        cell.configure(data: movieUIModel, isStarHidden: !isStarHidden)
         return cell
     }
     
@@ -96,8 +117,34 @@ extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDat
 
 extension MovieListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = (movieListCollectionView.frame.width - 10) / 2
-        return CGSize(width: cellWidth, height: 200)
+        if viewModel.isMultipleSelection() {
+            let width = (movieListCollectionView.frame.width) / 2.0
+            let cellsHorizontalSpacing: CGFloat = 10
+            let cellHeight: CGFloat = 441
+            return .init(width: width - cellsHorizontalSpacing, height: cellHeight)
+        } else {
+            let cellHeight: CGFloat = 707
+            return .init(width: movieListCollectionView.frame.width, height: cellHeight)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionFooter {
+            let footerView = collectionView.dequeueReusableView(CustomFooterView.self, kind: UICollectionView.elementKindSectionFooter, for: indexPath)
+            footerView.onTap = {
+                self.viewModel.paginationMovies()
+            }
+            return footerView
+        }
+        return UICollectionReusableView()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 100)
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
     }
 }
 
@@ -111,12 +158,14 @@ extension MovieListViewController: MovieDetailViewControllerProtocol {
 
 extension MovieListViewController: BaseSearchBarDelegate {
     func searchBarFilterWith(text: String) {
-        guard text.count >= 3 else { return viewModel.resetSearchList() }
+        guard text.count >= 3 else { return }
         showProgress()
+        viewModel.resetPage()
         viewModel.searchMovies(with: text)
     }
     
     func searchBarResetSearch() {
-        viewModel.resetSearchList()
+        viewModel.resetPage()
+        viewModel.getPopularMovies()
     }
 }

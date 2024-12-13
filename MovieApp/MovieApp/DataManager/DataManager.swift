@@ -10,10 +10,14 @@ import Foundation
 final class DataManager {
     static let shared = DataManager()
     
-    var favoriteMovies: [Int]? = [] {
-        didSet {
-            UserDefaults.standard.set(favoriteMovies, forKey: "favoriteMovies")
-            UserDefaults.standard.synchronize()
+    var favoriteMovies: [Int]? {
+        set {
+            UserDefaults.standard.set(try? PropertyListEncoder().encode(newValue),
+                                      forKey: "favoriteMovies")
+        }
+        get {
+            guard let data = UserDefaults.standard.data(forKey: "favoriteMovies") else { return [] }
+            return (try? PropertyListDecoder().decode([Int].self, from: data)) ?? .init()
         }
     }
 }
