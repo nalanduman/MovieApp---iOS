@@ -84,6 +84,11 @@ final class MovieListViewModel: BaseViewModel {
         guard !isLoading, page <= totalPages else { return }
         searchMovies(with: searchText ?? "", isPaginating: true)
     }
+    
+    func isVisibleFooter() -> Bool {
+        guard page <= totalPages else { return false }
+        return true
+    }
 }
 
 // MARK: - Service Methods

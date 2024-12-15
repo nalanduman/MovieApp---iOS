@@ -117,6 +117,7 @@ extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDat
 extension MovieListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionFooter {
+            guard viewModel.isVisibleFooter() else { return UICollectionReusableView() }
             let footerView = collectionView.dequeueReusableView(CustomFooterView.self, kind: UICollectionView.elementKindSectionFooter, for: indexPath)
             footerView.onTap = {
                 self.viewModel.paginationMovies()
@@ -127,7 +128,7 @@ extension MovieListViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 100)
+        return viewModel.isVisibleFooter() ? CGSize(width: collectionView.frame.width, height: 100) : .zero
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
