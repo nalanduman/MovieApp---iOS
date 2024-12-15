@@ -9,7 +9,7 @@ import Foundation
 
 class NetworkManager {
     let baseURL = "https://api.themoviedb.org/3/"
-    let apiKey = "12dae759553a27c1adae425693d079cc"
+    let apiKey = Bundle.main.object(forInfoDictionaryKey: "APIKey") as? String ?? ""
 
     static let shared = NetworkManager()
     
