@@ -133,10 +133,6 @@ extension MovieListViewController: UICollectionViewDelegateFlowLayout {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        viewModel.isMultipleSelection() ? 10 : 0
-    }
 }
 
 extension MovieListViewController: MovieDetailViewControllerProtocol {
