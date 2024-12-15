@@ -13,6 +13,9 @@ final class MovieCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var movieNameLabel: UILabel!
     @IBOutlet private weak var starImageView: UIImageView!
 
+    @IBOutlet private weak var viewWidthLayoutConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var viewHeightLayoutConstraint: NSLayoutConstraint!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -29,5 +32,10 @@ final class MovieCollectionViewCell: UICollectionViewCell {
         if let poster = data.poster {
             posterImageView.loadImage(fromURL: poster)
         }
+    }
+    
+    func configureSize(with size: CGSize) {
+        viewWidthLayoutConstraint.constant = size.width
+        viewHeightLayoutConstraint.constant = size.height
     }
 }

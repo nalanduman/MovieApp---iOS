@@ -59,7 +59,7 @@ final class MovieDetailViewController: BaseViewController {
         movieNameLabel.text = viewModel.getMovieData()?.title
         movieDescriptionLabel.text = viewModel.getMovieData()?.overview
         voteCountLabel.text = "Vote Count: " + (viewModel.getMovieData()?.voteCount?.string ?? "")
-        if let posterPath = viewModel.getMovieData()?.posterPath {
+        if let posterPath = viewModel.getMovieData()?.backdropPath {
             posterImageView.loadImage(fromURL: posterPath.toPosterUrl)
         }
     }

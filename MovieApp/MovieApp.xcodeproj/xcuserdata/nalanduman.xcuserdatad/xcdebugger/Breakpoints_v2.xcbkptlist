@@ -82,6 +82,36 @@
             endingLineNumber = "47"
             landmarkName = "setTextToImageUpload(base64str:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0AB720A8-51EB-4623-8F85-4C88686AD8B7 - 2bbeca25fa7ef41d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;MovieApp.TextToImageResponseModel&gt;) -&gt; () in MovieApp.MovieDetailViewModel.setTextToImageUpload(base64str: Swift.String) -&gt; ()"
+                  moduleName = "MovieApp.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nalanduman/Desktop/NewProject/MovieApp/MovieApp---iOS/MovieApp/MovieApp/ViewModelControllers/MovieDetail/MovieDetailViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47">
+               </Location>
+               <Location
+                  uuid = "0AB720A8-51EB-4623-8F85-4C88686AD8B7 - 2bbeca25fa7ef41d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;MovieApp.TextToImageResponseModel&gt;) -&gt; () in MovieApp.MovieDetailViewModel.setTextToImageUpload(base64str: Swift.String) -&gt; ()"
+                  moduleName = "MovieApp.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nalanduman/Desktop/NewProject/MovieApp/MovieApp---iOS/MovieApp/MovieApp/ViewModelControllers/MovieDetail/MovieDetailViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -119,22 +149,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9234A376-76F5-493C-9905-8C364E95BEE7"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MovieApp/ViewModelControllers/MovieList/MovieListViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "collectionView(_:cellForItemAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "6DEBFA0F-9A91-43CE-82D6-208C914849F1"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -161,6 +175,22 @@
             startingLineNumber = "53"
             endingLineNumber = "53"
             landmarkName = "setFavoritedMovie(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8BF382F6-1C11-486C-81DE-2632513C0C82"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MovieApp/Components/MovieCollectionViewCell/MovieCollectionViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "configure(data:isStarHidden:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

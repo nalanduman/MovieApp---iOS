@@ -9,6 +9,6 @@ import Foundation
 
 extension String {
     var toPosterUrl: String {
-        "https://image.tmdb.org/t/p/w200/\(self)"
+        "https://image.tmdb.org/t/p/w500/\(self)"
     }
 }

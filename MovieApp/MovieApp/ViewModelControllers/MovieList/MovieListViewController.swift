@@ -91,12 +91,12 @@ extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCollectionViewCell.reuseId, for: indexPath) as? MovieCollectionViewCell else { return UICollectionViewCell() }
         let movie = viewModel.getMovie(at: indexPath.row)
-        let movieUIModel = MovieCollectionViewUIModel(title: movie?.title, poster: movie?.backdropPath?.toPosterUrl)
+        let posterUrl = viewModel.isMultipleSelection() ? movie?.posterPath?.toPosterUrl : movie?.backdropPath?.toPosterUrl
+        let movieUIModel = MovieCollectionViewUIModel(title: movie?.title, poster: posterUrl)
         let isStarHidden = DataManager.shared.favoriteMovies?.filter({ $0 == movie?.id }).count ?? 0 > 0
-        cell.configure(data: movieUIModel, isStarHidden: !isStarHidden)
-        return cell
+        let builder = MovieCollectionViewCellBuilder().build(with: movieUIModel, at: indexPath, isStarHidden: !isStarHidden, collectionView: movieListCollectionView, isMultipleSelection: viewModel.isMultipleSelection())
+        return builder
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -116,18 +116,6 @@ extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDat
 }
 
 extension MovieListViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if viewModel.isMultipleSelection() {
-            let width = (movieListCollectionView.frame.width) / 2.0
-            let cellsHorizontalSpacing: CGFloat = 10
-            let cellHeight: CGFloat = 441
-            return .init(width: width - cellsHorizontalSpacing, height: cellHeight)
-        } else {
-            let cellHeight: CGFloat = 707
-            return .init(width: movieListCollectionView.frame.width, height: cellHeight)
-        }
-    }
-    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionFooter {
             let footerView = collectionView.dequeueReusableView(CustomFooterView.self, kind: UICollectionView.elementKindSectionFooter, for: indexPath)
