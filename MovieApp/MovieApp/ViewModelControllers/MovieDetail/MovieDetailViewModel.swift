@@ -15,19 +15,13 @@ final class MovieDetailViewModel: BaseViewModel {
         }
     }
 
+    var reloadData: VoidCallback?
     var reloadView: VoidCallback?
     var updatedStarStatus: VoidCallback?
 
     func getMovieData() -> MovieDetailResponseModel? {
         guard let movie = movie else { return nil }
         return movie
-    }
-    
-    func getMovie(with id: Int) {
-        NetworkManager.shared.getMovie(id) { response in
-            guard let response else { return }
-            self.movie = response
-        }
     }
     
     func setStarStatus(_ starStatus: StarStatusEnum) {
@@ -40,6 +34,17 @@ final class MovieDetailViewModel: BaseViewModel {
     
     func changeStarStatus() {
         starStatus = starStatus.changeStatus(starStatus)
+    }
+}
+
+// MARK: - Service Methods
+extension MovieDetailViewModel {
+    func getMovie(with id: Int) {
+        NetworkManager.shared.getMovie(id) { response in
+            guard let response else { return }
+            self.movie = response
+            self.reloadData?()
+        }
     }
     
     func setTextToImageUpload(base64str: String) {

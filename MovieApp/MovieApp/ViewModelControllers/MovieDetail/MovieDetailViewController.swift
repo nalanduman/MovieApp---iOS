@@ -34,6 +34,13 @@ final class MovieDetailViewController: BaseViewController {
     }
     
     private func initVM() {
+        viewModel.reloadData = { [weak self] in
+            guard let self else { return }
+            DispatchQueue.main.async {
+                self.setupUI()
+                self.hideProgress()
+            }
+        }
         viewModel.reloadView = { [weak self] in
             guard let self else { return }
             DispatchQueue.main.async {
@@ -51,8 +58,8 @@ final class MovieDetailViewController: BaseViewController {
     
     private func setup() {
         setNavigationBar()
-        setupUI()
         initVM()
+        setupUI()
     }
     
     private func setupUI() {

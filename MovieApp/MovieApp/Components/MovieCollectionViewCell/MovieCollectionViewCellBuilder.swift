@@ -12,7 +12,7 @@ final class MovieCollectionViewCellBuilder {
     func build(with movie: MovieCollectionViewUIModel?, at indexPath: IndexPath, isStarHidden: Bool = true, collectionView: UICollectionView, isMultipleSelection: Bool = true) -> MovieCollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCollectionViewCell.reuseId, for: indexPath) as! MovieCollectionViewCell
         let width = collectionView.frame.width
-        let multipleWidth = (width / 2.0) - 10
+        let multipleWidth = Int((width - 10.0) / 2.0)
         let multipleSize = CGSize(width: multipleWidth, height: (260 * multipleWidth) / 175)
         let singleSize = CGSize(width: width, height: (205 * width) / 360)
 

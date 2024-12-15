@@ -20,11 +20,6 @@ final class MovieCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        contentView.layoutIfNeeded()
-    }
-    
     func configure(data: MovieCollectionViewUIModel?, isStarHidden: Bool = true) {
         guard let data else { return }
         starImageView.isHidden = isStarHidden
